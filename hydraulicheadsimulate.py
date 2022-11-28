@@ -22,7 +22,7 @@ def hydraulic_head_finite_difference_calaculate(step_length,X_length,Y_length,H_
     while l<m*n:
         for i in range(0,n):#对行进行扫描
             for j in range(0,m):#对列进行扫描
-                #上下左右边界赋值
+                #上下左右边界赋值3
                 if((i-1)<0):
                     H_b[l]=H_b[l]-H_top
                 if((j-1)<0):
@@ -155,5 +155,3 @@ button1=Button(main,text='计算',background='SeaGreen2',command=main_,font=('�
 button1.place(x=135,y=250,width=40,height=20)
 
 main.mainloop()
-
-
