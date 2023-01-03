@@ -4,8 +4,8 @@ import numpy.linalg as nla
 import matplotlib.pyplot as plt
 from matplotlib import cm
 from mpl_toolkits.mplot3d import Axes3D
-from tkinter import *
 #仅适用于椭圆方程
+#第一类边界条件(Dirichlet条件),给定水头边界
 def hydraulic_head_finite_difference_calaculate(step_length,X_length,Y_length,H_top,H_bottom,H_left,H_right,L_R_NOFLOW=False):
     if(L_R_NOFLOW==True):
         X_length=7*X_length
@@ -22,7 +22,7 @@ def hydraulic_head_finite_difference_calaculate(step_length,X_length,Y_length,H_
     while l<m*n:
         for i in range(0,n):#对行进行扫描
             for j in range(0,m):#对列进行扫描
-                #上下左右边界赋值3
+                #上下左右边界赋值
                 if((i-1)<0):
                     H_b[l]=H_b[l]-H_top
                 if((j-1)<0):
@@ -44,7 +44,7 @@ def hydraulic_head_finite_difference_calaculate(step_length,X_length,Y_length,H_
                 if((j+1)<m):
                     H_a[l,i*m+j+1]=1
                 #给位置为（i,j)处的水头赋上系数值
-                H_a[l,i*m+j]=-4#高斯-赛德尔迭代法??
+                H_a[l,i*m+j]=-4
                 l+=1
     #解矩阵方程
     H=nla.solve(H_a,H_b)
